@@ -7,6 +7,7 @@ import LocaleProvider from "./LocaleProvider";     // external file to provide l
 import React from "react";
 
 
+
 export const metadata: Metadata = {
   title: "Intl demo",
   description: "This is intl demo",
@@ -22,7 +23,7 @@ export default function RootLayout({children, params} : {children : React.ReactN
 
   const {locale} = params;
 
-    if(!routing.locales.includes(locale as (typeof routing.locales)[number])){
+    if(!["en","es", "hi"].includes(locale)){
       notFound();
     }
 
