@@ -19,15 +19,23 @@ export const metadata: Metadata = {
 };
 
 
+// Forces Next.js to infer correct params type for [locale]
+export async function generateMetadata({ params }: { params: { locale: string } }) {
+  return {};
+}
+
+
+
     type SupportedLocale = (typeof routing.locales)[number];
 
 
 
-export default async function RootLayout({children, params} : {children : React.ReactNode; params : {locale : SupportedLocale}}) {
+export default function RootLayout({children, params} : {children : React.ReactNode; params : {locale : SupportedLocale}}) {
 
   const {locale} = params;
 
-    if(!routing.locales.includes(locale as (typeof routing.locales)[number])){
+    if(!routing.locales.includes(locale as SupportedLocale)){
+     console.warn("Invalid locale:", locale);
       notFound();
     }
 
