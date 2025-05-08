@@ -23,11 +23,11 @@ export const metadata: Metadata = {
 
 
 
-export default function RootLayout({children, params} : {children : React.ReactNode; params : {locale : SupportedLocale}}) {
+export default async function RootLayout({children, params} : {children : React.ReactNode; params : {locale : SupportedLocale}}) {
 
   const {locale} = params;
 
-    if(!["en","es", "hi"].includes(locale)){
+    if(!routing.locales.includes(locale as (typeof routing.locales)[number])){
       notFound();
     }
 
