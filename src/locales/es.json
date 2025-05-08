@@ -2,6 +2,8 @@
 
 {
 
-            "title" : "bienvenido a mi sitio web"
+            "title" : "navegar por impuesto Centro",
+            "content" : "Este proyecto es un sistema de automatización de documentos basado en IA, diseñado para gestionar el procesamiento integral de documentos PDF. Permite a los usuarios cargar documentos, extraer información clave, validar los datos extraídos e integrar los resultados en los sistemas empresariales, todo con mínima intervención humana."
+
 
 }

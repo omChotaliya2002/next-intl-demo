@@ -2,6 +2,7 @@
 
 {
     
-        "title" : "Welcome to my website"
+        "title" : "Navigate Tax Hub",
+        "content" : "This project is AI powered document automation system designed to handle end-to-end processing of PDF documents. It enables users to upload documents, extract key information, validate the extracted data, and integrate the results into business systems – all with minimal human invention."
 
 }

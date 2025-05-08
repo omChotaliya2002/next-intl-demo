@@ -1,9 +1,8 @@
 import type { Metadata } from "next";
-import "/INTL/intl-demo/src/app/globals.css";
+import "./globals.css";
 import { NextIntlClientProvider } from "next-intl";
 import { notFound } from "next/navigation";
 import { routing } from "@/i18n/routing";
-import "../../app/globals.css";
 
 
 export const metadata: Metadata = {
@@ -35,7 +34,9 @@ async function getMessages(locale : string) {     //getMessage IS DEFAULT FUNCTI
 
 }
 
-export default async function RootLayout({children, params : {locale}} : Props) {
+export default async function RootLayout({children, params} : Props) {
+
+  const {locale} = await params;
 
     if(!routing.locales.includes(locale)){
       notFound();
