@@ -19,7 +19,11 @@ export const metadata: Metadata = {
 };
 
 
-export default function RootLayout({children, params} : {children : React.ReactNode; params : {locale : string}}) {
+    type SupportedLocale = (typeof routing.locales)[number];
+
+
+
+export default function RootLayout({children, params} : {children : React.ReactNode; params : {locale : SupportedLocale}}) {
 
   const {locale} = params;
 
