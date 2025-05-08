@@ -7,23 +7,10 @@ import LocaleProvider from "./LocaleProvider";     // external file to provide l
 import React from "react";
 
 
-
-export const metadata: Metadata = {
-  title: "Intl demo",
-  description: "This is intl demo",
-
-    other:{
-      "google" : "notranslate"
-    }
-
-};
-
-
 // Forces Next.js to infer correct params type for [locale]
 export async function generateMetadata({ params }: { params: { locale: string } }) {
   return {};
 }
-
 
 
     type SupportedLocale = (typeof routing.locales)[number];
