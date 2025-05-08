@@ -7,21 +7,29 @@ import LocaleProvider from "./LocaleProvider";     // external file to provide l
 import React from "react";
 
 
-// Forces Next.js to infer correct params type for [locale]
-export async function generateMetadata({ params }: { params: { locale: string } }) {
-  return {};
-}
-
 
     type SupportedLocale = (typeof routing.locales)[number];
 
+
+    interface Props {
+      children: React.ReactNode;
+      params: {
+        locale: SupportedLocale;
+      };
+    }
+    
+
+      // Forces Next.js to infer correct params type for [locale]
+export async function generateMetadata({ params }: { params: { locale: string } }) {
+  return {};
+}
 
 
 export default function RootLayout({children, params} : {children : React.ReactNode; params : {locale : SupportedLocale}}) {
 
   const {locale} = params;
 
-    if(!routing.locales.includes(locale as SupportedLocale)){
+    if(!routing.locales.includes(locale)){
      console.warn("Invalid locale:", locale);
       notFound();
     }
@@ -31,9 +39,7 @@ export default function RootLayout({children, params} : {children : React.ReactN
     <html lang={locale} className="notranslate">
 
       <head>
-
           <meta name="google" content="notranslate"/>
-
       </head>
 
       <body translate="no">
