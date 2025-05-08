@@ -1,8 +1,9 @@
 import type { Metadata } from "next";
 import "./globals.css";
-import { NextIntlClientProvider } from "next-intl";
+import { Locale, NextIntlClientProvider } from "next-intl";
 import { notFound } from "next/navigation";
 import { routing } from "@/i18n/routing";
+import { Languages } from "next/dist/lib/metadata/types/alternative-urls-types";
 
 
 export const metadata: Metadata = {
@@ -18,7 +19,7 @@ export const metadata: Metadata = {
 interface Props {
 
     children : React.ReactNode;
-    params : {locale : any}
+    params : {locale : (typeof routing.locales)[number]}
 
 }
 
@@ -36,7 +37,7 @@ async function getMessages(locale : string) {     //getMessage IS DEFAULT FUNCTI
 
 export default async function RootLayout({children, params} : Props) {
 
-  const {locale} = await params;
+  const {locale} = params;
 
     if(!routing.locales.includes(locale)){
       notFound();
