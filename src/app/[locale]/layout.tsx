@@ -3,7 +3,7 @@ import "./globals.css";
 import { Locale, NextIntlClientProvider } from "next-intl";
 import { notFound } from "next/navigation";
 import { routing } from "@/i18n/routing";
-import { Languages } from "next/dist/lib/metadata/types/alternative-urls-types";
+import LocaleProvider from "./LocaleProvider";     // external file to provide locales📌📌
 
 
 export const metadata: Metadata = {
@@ -16,35 +16,26 @@ export const metadata: Metadata = {
 
 };
 
+type SupportedLocale = (typeof routing.locales)[number];
+
 interface Props {
 
     children : React.ReactNode;
-    params : {locale : (typeof routing.locales)[number]}
+    params : {locale : string}
 
 }
 
-async function getMessages(locale : string) {     //getMessage IS DEFAULT FUNCTION..👍👍
 
-    try{
-      return(await import(`../../locales/${locale}.json`)).default;
-    }
-    catch(error){
-      console.error("Missing messages for locale : ", locale);
-      notFound();
-    }
-
-}
-
-export default async function RootLayout({children, params} : Props) {
+export default function RootLayout({children, params} : Props) {
 
   const {locale} = params;
 
-    if(!routing.locales.includes(locale)){
+    if(!routing.locales.includes(locale as SupportedLocale)){
       notFound();
     }
 
     
-    const messages = await getMessages(locale);
+    // const messages = await getMessages(locale);
 
 
   return (
@@ -57,9 +48,9 @@ export default async function RootLayout({children, params} : Props) {
       </head>
 
       <body translate="no">
-          <NextIntlClientProvider locale={locale} messages={messages}>
+            <LocaleProvider locale={locale}>
               {children}
-          </NextIntlClientProvider>
+            </LocaleProvider>
       </body>
     </html>
   );
